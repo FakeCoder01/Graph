@@ -1,0 +1,6 @@
+*.o
+.ropeproject
+server/server
+__pycache__/
+obj/
+_.html
