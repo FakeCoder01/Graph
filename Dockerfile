@@ -32,8 +32,6 @@ RUN make clean
 
 RUN make
 
-# RUN cp server /app/server/
-COPY ./server /app/server/
 RUN chmod +x /app/server/server
 
 WORKDIR /
@@ -42,11 +40,13 @@ COPY webapp /app/webapp
 
 RUN apt-get install -y supervisor
 
-# RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -rf /etc/nginx/sites-available/default
+RUN rm -rf /etc/nginx/sites-enabled/default
+
 COPY config/nginx.conf /etc/nginx/conf.d/
 
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf", "-n"]
