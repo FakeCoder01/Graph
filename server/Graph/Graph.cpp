@@ -1,7 +1,7 @@
 #include "Graph.h"
-#include <climits>
 #include <stdexcept>
-
+#include <limits>
+#include <vector>
 
 Graph::Graph(int node_count, const std::vector<Edge>& edges)
     : adjacency_list(node_count), node_count(node_count) {
@@ -18,12 +18,12 @@ void Graph::add_edge(int from, int to, double weight) {
 std::vector<Edge> Graph::calculate_mst() const {
     std::vector<bool> visited(node_count, false);
     std::vector<int> closest(node_count, 0);
-    std::vector<double> min_weight(node_count, INT_MAX);
+    std::vector<double> min_weight(node_count, std::numeric_limits<double>::infinity());
     std::vector<Edge> mst;
 
     // starts with node 0
     visited[0] = true;
-    closest[0] = -1; // Indicates the node is part of MST
+    closest[0] = -1;
 
     // min_weight for neighbors of node 0
     for (const auto& neighbor : adjacency_list[0]) {
@@ -35,7 +35,8 @@ std::vector<Edge> Graph::calculate_mst() const {
 
     for (int i = 1; i < node_count; ++i) {
         // get the next node with the smallest min_weight
-        double wmin = INT_MAX;
+        double wmin = std::numeric_limits<double>::infinity();
+
         int vm = -1;
         for (int j = 0; j < node_count; ++j) {
             if (!visited[j] && min_weight[j] < wmin) {

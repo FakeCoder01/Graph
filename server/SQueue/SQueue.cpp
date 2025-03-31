@@ -8,7 +8,7 @@ SQueue<T>::SQueue(size_t length){
 }
 
 template <typename T>
-void SQueue<T>::add(T value) {
+void SQueue<T>::push(T value) {
     data.push_back(value);
 }
 

@@ -214,7 +214,7 @@ function render() {
     ctx.setLineDash([]);
   }
 
-  // Draw nodes
+  // draw nodes
   nodes.forEach((node) => {
     ctx.beginPath();
     ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);

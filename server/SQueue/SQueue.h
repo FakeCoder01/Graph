@@ -12,10 +12,9 @@ private:
 
 public:
     SQueue(size_t length = 0);
-    void add(T value);
+    void push(T value);
     std::optional<T> pop();
 };
 
-#include "SQueue.h"
 
 #endif // SQUEUE_H

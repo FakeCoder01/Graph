@@ -4,3 +4,6 @@ server/server
 __pycache__/
 obj/
 _.html
+.venv/
+debug.log
+TASK.md
